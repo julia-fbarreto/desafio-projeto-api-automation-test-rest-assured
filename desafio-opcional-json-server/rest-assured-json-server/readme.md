@@ -1,27 +1,29 @@
-Mock de Api criado com json-server-auth<br>
+<h2>Mock de Api criado com json-server-auth 🖥️</h2><br>
 versão utilizada: 2.1.0
 
-<b>Primeiros Passos:</b>
+#### Primeiros Passos:
 
-- Instalar NodeJs (https://nodejs.org/en/)
+- Instalar [NodeJs](https://nodejs.org/en/)
 
-- Dentro do diretório do seu projeto, abrir o terminal para começar a criar o projeto digite (permite iniciar um pacote, criando o arquivo package.json):<br>
-    'npm initi'
+- Dentro do diretório do seu projeto, abrir o terminal para começar a criar o projeto digite:<br>
+  `npm initi`
+  
+  <i>permite iniciar um pacote, criando o arquivo package.json</i>
+
 - Em seguida instalar o json-server
 
-<br>
-1) Instalação Json Server:
+
+#### Instalação Json Server:
 
 No terminal digite: <br>
-'npm install -D json-server json-server-auth'
+`npm install -D json-server json-server-auth`
 
-utilizando o json-server-auth porque precisamos de autenticação e fluxo de autenticação fake e tem interdependência com json-server
-json-server + json-server-auth juntos
+<i>utilizando o json-server-auth pois será necessário realizar autenticação e fluxo de autenticação fake (que já é json-server + json-server-auth juntos)</i>
 
-<br>
-2) Criando o arquivo de banco de dados<br>
+
+#### Criando o arquivo de banco de dados:<br>
 Criar db.json como collection inicial (irá funcionar como um banco de dados)
-
+```
 {
     "users": [],
     "bookings": [
@@ -39,26 +41,32 @@ Criar db.json como collection inicial (irá funcionar como um banco de dados)
         }
     ]
 }
+```
 
-<br>
-3) Configurando o script do arquivo package.json<br>
-Digite 'json-server-auth db.json'
+Utilizei como referência os endpoints do [restful-booker](https://restful-booker.herokuapp.com/apidoc/index.html#api-Booking-DeleteBooking)
+<br>E como request o [Postman](https://www.postman.com/)
+<br>Utilizei a IDE [IntelliJ](https://www.jetbrains.com/idea/download/#section=windows) 
 
+
+#### Configurando o script do arquivo package.json:<br>
+Na sua IDE de preferência e na pasta package.json digite no script
+`json-server-auth db.json`
+```
 {
     "scripts": {
         "start-server": "json-server-auth db.json -r routes.json"
     }
 }
+```
 
-<br>
-4) Iniciando o servidor <br>
-Digite no terminal:<br> 'npm run start-server'.<p>
-Por padrão a API vai funcionar no endereço: http://localhost:3000<br>
+#### Iniciando o servidor: <br>
+Digite no terminal:<br> 
+`npm run start-server`
+<p>Por padrão a API vai funcionar no endereço: http://localhost:3000<br>
 
 
-<br>
-5) Rotas<br>
-Você define as rotas da API mas iremos usar as rotas abaixo:
+#### Rotas:<br>
+Você define as rotas da API mas utilizei as rotas abaixo:
 
 <table>
     <tr>
@@ -103,75 +111,118 @@ Você define as rotas da API mas iremos usar as rotas abaixo:
     </tr>
 </table>
 
-<br><b>Exemplos</b>
+#### Exemplos:
 
-Exemplos 1
+<b>Exemplo 1:</b> Registro de um novo usuário
 <br>Dados de envio:
-<br>POST http://localhost:3000/register
-<br>
-{
-"email": "olivier@mail.com",
-"password": "bestPassw0rd"
-} 
+```
+POST http://localhost:3000/register
 
-<br>Retorno<br>
+{
+    "email": "olivier@mail.com",
+    "password": "bestPassw0rd"
+} 
+```
+
+<br>Retorno
+```
 {
     "user": {
     "email": "olivier@mail.com",
     "id": 1
     }
 }
+```
 
-<br>Exemplo 2
+<br><b>Exemplo 2:</b> Login de um usuário existente
 <br>Dados de envio:
-<br>POST http://localhost:3000/login
-<br>{
-"email": "olivier@mail.com",
-"password": "bestPassw0rd"
+```
+POST http://localhost:3000/login
+{
+    "email": "olivier@mail.com",
+    "password": "bestPassw0rd"
 }
+```
 
-Retorno
-<br>{
-"user": {
-"email": "olivier@mail.com",
-"id": 1
+<br>Retorno
+```
+{
+    "user": {
+    "email": "olivier@mail.com",
+    "id": 1
+    }
 }
-}
+```
 
-<br>Exemplo 3
+<br><b>Exemplo 3:</b> Restringir acesso
 <br>Dados de envio:
-<br>GET http://localhost:3000/bookings
-<br>{
-"bookings": 600
+```
+GET http://localhost:3000/bookings
+{
+    "bookings": 600
 }
+```
 
-Retorno
-<br>401 Unauthorized
+<br>Retorno
+```
+401 Unauthorized
+```
 
-<br>Exemplo 4
+<br><b>Exemplo 4:</b> Procurar um usuário por ID
 <br>Dados de envio:
-<br> GET http://localhost:3000/users/2
+```
+GET http://localhost:3000/users/2
+```
 
-Retorno
-<br>{
-"email": "testejulia1@mail.com",
-"password": "$2a$10$dqC0j9FmH5pqya7E1HbNjeIneNlrPDPiQxYhuJyTxu7rNF7owRFUm",
-"id": 2
+<br>Retorno
+```
+{
+    "email": "testejulia1@mail.com",
+    "password": "$2a$10$dqC0j9FmH5pqya7E1HbNjeIneNlrPDPiQxYhuJyTxu7rNF7owRFUm",
+    "id": 2 
 }
+```
 
-<br>Exemplo 5
+<br><b>Exemplo 5:</b> Atualizar dados de usuário
 <br>Dados de envio:
-<br>PUT http://localhost:3000/users/1
-<br>{
-"email": "olivier@mail.com",
-"password": "bestPassw0rd",
-"firstname": "Olivier",
-"lastname": "Monge",
-"age": 32
+```
+PUT http://localhost:3000/users/1
+{
+    "email": "olivier@mail.com",
+    "password": "bestPassw0rd",
+    "firstname": "Olivier",
+    "lastname": "Monge",
+    "age": 32
 }
+```
 
-Retorno
-<br>{
+<br>Retorno
+```
+{
+    "email": "olivier@mail.com",
+    "password": "$2a$10$iZM7npQxjGKjkxcTEuCA5./zPjJlpne23LMhYX88JQesXcZv1f3vK",
+    "firstname": "Olivier",
+    "lastname": "Monge",
+    "age": 32,
+    "id": 1
+}
+```
+
+<br><b>Exemplo 6:</b> Atualizar dados parciais de usuário
+<br>Dados de envio:
+```
+PATCH http://localhost:3000/users/1
+{
+    "email": "olivier@mail.com",
+    "password": "bestPassw0rd",
+    "firstname": "Olivier",
+    "lastname": "Monge",
+    "age": 42
+}
+```
+<br>Retorno
+```
+{
 "email": "olivier@mail.com",
 "password": "$2a$10$iZM7npQxjGKjkxcTEuCA5./zPjJlpne23LMhYX88JQesXcZv1f3vK",
 "firstname": "Olivier",
@@ -179,38 +230,24 @@ Retorno
 "age": 32,
 "id": 1
 }
+```
 
-<br>Exemplo 6
+<br><b>Exemplo 7:</b> Deletar usuário
 <br>Dados de envio:
-<br>PATCH http://localhost:3000/users/1
-<br>{
-"email": "olivier@mail.com",
-"password": "bestPassw0rd",
-"firstname": "Olivier",
-"lastname": "Monge",
-"age": 42
-}
+```
+DELETE http://localhost:3000/users/3
+```
 
-Retorno
-<br>{
-"email": "olivier@mail.com",
-"password": "$2a$10$iZM7npQxjGKjkxcTEuCA5./zPjJlpne23LMhYX88JQesXcZv1f3vK",
-"firstname": "Olivier",
-"lastname": "Monge",
-"age": 32,
-"id": 1
-}
+<br>Retorno
+```
+200 OK
+```
 
-<br>Exemplo 7
-<br>Dados de envio:
-<br>DELETE http://localhost:3000/users/3
-
-Retorno
-<br>200 OK
-
-<b>Referências</b>
-<br>https://www.npmjs.com/package/json-server-auth?activeTab=readme
+#### Referências:
+https://www.npmjs.com/package/json-server-auth?activeTab=readme
 <br>https://restful-booker.herokuapp.com/apidoc/index.html#api-Booking-DeleteBooking
 
+
+<br>Obrigada por ter lido até aqui, espero que goste! 💜
 
 
