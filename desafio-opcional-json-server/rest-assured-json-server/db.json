@@ -1,0 +1,31 @@
+{
+  "users": [
+    {
+      "email": "olivier@mail.com",
+      "password": "$2a$10$oX9Kc9DqeykC4X5SkVLipeSEnd8qzDwlxyHjuzikp3W/QxMOWb56K",
+      "firstname": "Olivier",
+      "lastname": "Monge",
+      "age": 42,
+      "id": 1
+    },
+    {
+      "email": "testejulia1@mail.com",
+      "password": "$2a$10$dqC0j9FmH5pqya7E1HbNjeIneNlrPDPiQxYhuJyTxu7rNF7owRFUm",
+      "id": 2
+    }
+  ],
+  "bookings": [
+    {
+      "bookingid": 1,
+      "firstname": "Sally",
+      "lastname": "Brown",
+      "totalprice": 111,
+      "depositpaid": true,
+      "bookingdates": {
+        "checkin": "2013-02-23",
+        "chekcout": "2014-10-23"
+      },
+      "additionalneeds": "Breakfast"
+    }
+  ]
+}
